@@ -35,7 +35,7 @@ export class App {
         const splitResponses: Observable<Animal[]>[] = [];
         // Scenario: API upstream performs too poorly to process entire payload without timing out, so request is parallellized.
         for (const animal of mockInventory) {
-          splitResponses.push(inventoryLookup.fetchMockData());
+          splitResponses.push(inventoryLookup.fetchMockData([animal]));
         }
         return forkJoin(splitResponses);
       }),
